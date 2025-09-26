@@ -1,5 +1,8 @@
 package edu.pzks;
 
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /*
@@ -20,7 +23,57 @@ class ConverterTest {
     void tearDown() {
     }
 
-    @org.junit.jupiter.api.Test
-    void convertToRoman() {
+    @Test
+    void whenArabic_3_ThenRoman_III() {
+        Assertions.assertEquals("III", Converter.convertToRoman(3));
     }
+    @Test
+        void whenArabic_5_ThenRoman_V() {
+        Assertions.assertEquals("V", Converter.convertToRoman(5));
+    }
+
+    @Test
+        void whenArabic_4_ThenRoman_IV() {
+        Assertions.assertEquals("IV", Converter.convertToRoman(4));
+    }
+
+    @Test
+        void whenArabic_8_ThenRoman_VIII() {
+        Assertions.assertEquals("VIII", Converter.convertToRoman(8));
+    }
+    @Test
+        void whenArabic_10_ThenRoman_X() {
+        Assertions.assertEquals("X", Converter.convertToRoman(10));
+    }
+
+
+    /*
+    *   1 - I
+    *   2 - II
+    *   3 - III
+    *   4 - IV
+    *   5 - V
+    *   6 - VI
+    *
+    * 9   -  IX
+    * 10 - X
+    * 11  - XI
+    *
+    *  15
+    * 18
+    * 20
+    * 28
+    *
+    * 30
+    * 38
+    *
+    * 50
+    * 58
+    * 48
+    * 88
+    * 108
+    * 98
+    *
+    *
+    * */
 }
