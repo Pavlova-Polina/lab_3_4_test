@@ -36,6 +36,39 @@ public class Converter {
         return sb.toString();
     }
 
+    public static int romanToArabic(String input) {
+         String validSymbols = "IVXLCDM";
+         for (int i = 0; i < input.length(); i++) {
+             if(!validSymbols.contains(input.substring(i, i + 1))){
+                 throw new IllegalArgumentException(input + " contains incorrect symbol - "
+                         + input.substring(i, i + 1) );
+             }
+         }
+
+        String romanNumeral = input;
+        int result = 0;
+
+        List<RomanNumeral> romanNumerals = RomanNumeral.getReverseSortedValues();
+
+        int i = 0;
+
+        while ((romanNumeral.length() > 0) && (i < romanNumerals.size())) {
+            RomanNumeral symbol = romanNumerals.get(i);
+            if (romanNumeral.startsWith(symbol.name())) {
+                result += symbol.getValue();
+                romanNumeral = romanNumeral.substring(symbol.name().length());
+            } else {
+                i++;
+            }
+        }
+
+        if (romanNumeral.length() > 0) {
+            throw new IllegalArgumentException(input + " cannot be converted to a Roman Numeral");
+        }
+
+        return result;
+    }
+
 
 
 }

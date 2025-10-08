@@ -23,56 +23,43 @@ class ConverterTest {
     void tearDown() {
     }
 
+//    @Test
+//    void whenArabic_3_ThenRoman_III() {
+//        Assertions.assertEquals("III", Converter.convertToRoman(3));
+//    }
+//    @Test
+//        void whenArabic_5_ThenRoman_V() {
+//        Assertions.assertEquals("V", Converter.convertToRoman(5));
+//    }
+//
+//    @Test
+//        void whenArabic_4_ThenRoman_IV() {
+//        Assertions.assertEquals("IV", Converter.convertToRoman(4));
+//    }
+//
+//    @Test
+//        void whenArabic_8_ThenRoman_VIII() {
+//        Assertions.assertEquals("VIII", Converter.convertToRoman(8));
+//    }
+//    @Test
+//        void whenArabic_10_ThenRoman_X() {
+//        Assertions.assertEquals("X", Converter.convertToRoman(10));
+//    }
+
+    //------------------    testing Roman to Arabic
+
     @Test
-    void whenArabic_3_ThenRoman_III() {
-        Assertions.assertEquals("III", Converter.convertToRoman(3));
-    }
-    @Test
-        void whenArabic_5_ThenRoman_V() {
-        Assertions.assertEquals("V", Converter.convertToRoman(5));
+    void whenRoman_III_Then_Arabic3() {
+        Assertions.assertEquals(3, Converter.romanToArabic("IIIV"));
     }
 
     @Test
-        void whenArabic_4_ThenRoman_IV() {
-        Assertions.assertEquals("IV", Converter.convertToRoman(4));
-    }
-
-    @Test
-        void whenArabic_8_ThenRoman_VIII() {
-        Assertions.assertEquals("VIII", Converter.convertToRoman(8));
-    }
-    @Test
-        void whenArabic_10_ThenRoman_X() {
-        Assertions.assertEquals("X", Converter.convertToRoman(10));
+    void whenRomanContainsNumberThenMethodThrowsException() {
+        IllegalArgumentException exception =
+                Assertions.assertThrows(IllegalArgumentException.class, ()
+                        -> {Converter.romanToArabic("II3");});
+        Assertions.assertTrue(exception.getMessage().contains("incorrect"));
     }
 
 
-    /*
-    *   1 - I
-    *   2 - II
-    *   3 - III
-    *   4 - IV
-    *   5 - V
-    *   6 - VI
-    *
-    * 9   -  IX
-    * 10 - X
-    * 11  - XI
-    *
-    *  15
-    * 18
-    * 20
-    * 28
-    *
-    * 40
-    * 48
-    *
-    * 50
-    * 58
-    * 88
-    * 108
-    * 98
-    *
-    *
-    * */
 }
