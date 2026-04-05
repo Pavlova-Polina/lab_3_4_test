@@ -27,4 +27,45 @@ public class Converter {
 
         return sb.toString();
     }
+
+    public static int romanToArabic(String input) {
+        if (input == null || input.isEmpty()) {
+            throw new IllegalArgumentException("Input cannot be null or empty");
+        }
+
+        String romanNumeral = input.toUpperCase();
+
+        String validSymbols = "IVXLCDM";
+        for (int i = 0; i < romanNumeral.length(); i++) {
+            if (!validSymbols.contains(romanNumeral.substring(i, i + 1))) {
+                throw new IllegalArgumentException(input + " contains incorrect symbol - "
+                        + romanNumeral.substring(i, i + 1));
+            }
+        }
+
+        int result = 0;
+        List<RomanNumeral> romanNumerals = RomanNumeral.getReverseSortedValues();
+        int i = 0;
+
+        while (!romanNumeral.isEmpty() && i < romanNumerals.size()) {
+            RomanNumeral symbol = romanNumerals.get(i);
+
+            if (romanNumeral.startsWith(symbol.name())) {
+                result += symbol.getValue();
+                romanNumeral = romanNumeral.substring(symbol.name().length());
+            } else {
+                i++;
+            }
+        }
+
+        if (!romanNumeral.isEmpty()) {
+            throw new IllegalArgumentException(input + " cannot be converted to a Roman numeral");
+        }
+
+        if (!convertToRoman(result).equals(input.toUpperCase())) {
+            throw new IllegalArgumentException(input + " is not a valid Roman numeral");
+        }
+
+        return result;
+    }
 }
